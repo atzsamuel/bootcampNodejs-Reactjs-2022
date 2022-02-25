@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,13 +8,70 @@
   <title>Bootcamp - JavasCript 001</title>
   <!--- Al tener los archivos javascript al inicio lo cargara primero antes de renderizar el resto, 
   esto se puede evitar agregando la propiedad async -->
- 
+
 </head>
+
 <body>
-    <h1>Bootcamp JavasCript</h1>
-    <p>Bienvenidos!</p>
-    <p>Este es el primer ejercicio de Bootcamp</p>
-    <script src="index.js"></script>
-    <!--- Lo recoemndable es agregar los archivos javascript al final -->
+  <form action="index.html">
+    <input type="hidden" name="codigo" id="codigo">
+    <div>
+      <label for="nombre">Nombre</label>
+      <input type="text" name="nombre" id="nombre">
+    </div>
+    <div>
+      <label for="cantidad">Cantidad</label>
+      <input type="number" name="cantidad" id="cantidad">
+    </div>
+    <div>
+      <label for="precio">Precio</label>
+      <input type="number" name="precio" id="precio">
+    </div>
+    <div>
+      <label for="categoria">Categoria</label>
+      <select name="categoria" id="categoria">
+        <option value="1">Laptops</option>
+        <option value="2">Tablets</option>
+        <option value="3">Celulares</option>
+        <option value="4">Categoria 4</option>
+      </select>
+    </div>
+    <div>
+      <button type="submit">Guardar</button>
+    </div>
+  </form>
+
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Nombre</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Total</th>
+          <th></th>
+        </tr>
+      <tbody>
+        <tr>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">Totales:</td>
+          <td id="cantidad-total">$0</td>
+          <td id="precio-total">$0</td>
+          <td id="gran-total">$0</td>
+          <td></td>
+        </tr>
+      </tfoot>
+      </thead>
+    </table>
+  </div>
+
+
+
+  <script src="index.js"></script>
+  <!--- Lo recoemndable es agregar los archivos javascript al final -->
 </body>
+
 </html>
