@@ -10,7 +10,11 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "",
   },
-  mode: "production",
+  mode: "development",
+  devServer: {
+    port: 5000,
+    open: true,
+  },
   module: {
     rules: [
       {
@@ -23,9 +27,9 @@ module.exports = {
         test: /.css$/,
       },
       {
-        type:"asset",
+        type: "asset",
         test: /\.(png|svg|jpg|jpeg|gif)$/,
-      }
+      },
     ],
   },
   plugins: [
