@@ -1,5 +1,6 @@
 @import "bootstrap";
 .app{
   font-family: sans-serif;
+  background-color: gray;
   color:white;
 }
