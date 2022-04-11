@@ -60,6 +60,21 @@ export const loggerMidelware = (store) => (next) => (action) => {
   return result;
 };
 
+export const storageMiddleware = (store) => (next) => (action) => {
+  const actions = [
+    ActionTypes.ProductoAgregado,
+    ActionTypes.ProductoModificado,
+    ActionTypes.ProductoEliminado,
+  ];
+
+  const result = next(action);
+  if (actions.indexOf(action.type) >= 0) {
+    const state = store.getState();
+    localStorage.setItem("state", JSON.stringify(state));
+  }
+  return result;
+};
+
 /*function loggerMidelware(store) {
   return function dispatchWrapper(next) {
     return function actionHandler(action) {
@@ -71,19 +86,20 @@ export const loggerMidelware = (store) => (next) => (action) => {
   };
 }*/
 
-export const agregarOModificarProductoMiddleware = (store) => (next) => (action) => {
-  if (action.type !== ActionTypes.ProductoAgregadoModificado) {
-    return next(action);
-  }
+export const agregarOModificarProductoMiddleware =
+  (store) => (next) => (action) => {
+    if (action.type !== ActionTypes.ProductoAgregadoModificado) {
+      return next(action);
+    }
 
-  const producto = action.payload;
-  const actionToDispatch = producto.codigo
-    ? productoModificado(producto)
-    : productoAgregado(producto);
+    const producto = action.payload;
+    const actionToDispatch = producto.codigo
+      ? productoModificado(producto)
+      : productoAgregado(producto);
 
-  store.dispatch(actionToDispatch);
-  return store.dispatch(productoSeleccionado(null));
-};
+    store.dispatch(actionToDispatch);
+    return store.dispatch(productoSeleccionado(null));
+  };
 
 function productoSeleccionadoReducer(state, action) {
   const codigo = action.payload.codigo;
