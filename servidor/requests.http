@@ -1,0 +1,40 @@
+### Home
+GET http://localhost:5001/
+
+### Obtener productos
+GET http://localhost:5001/productos
+Authorization: hola-mundo
+
+### Crear Productos
+POST http://localhost:5001/productos
+Content-Type: application/json
+
+{
+    "nombre": "libro",
+    "categoria":1,
+    "cantidad":2,
+    "precio": 20
+}
+
+### Modificar Productos
+PUT  http://localhost:5001/productos/6
+Content-Type: application/json
+
+{
+    "nombre": "Producto dos",
+    "categoria":1,
+    "cantidad":4,
+    "precio": 40
+}
+
+### Eliminar Productos
+DELETE http://localhost:5001/productos/2
+
+
+### Obtener un unico producto
+GET http://localhost:5001/productos/2
+
+### Filtrar productos
+GET http://localhost:5001/productos?filtro=libro
+
+### https://www.mongodb.com/atlas/database
