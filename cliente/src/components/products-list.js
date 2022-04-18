@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { productoEliminado, productoSeleccionado } from "../store/store";
 
 const ProductItem = (prop) => {
@@ -14,14 +15,13 @@ const ProductItem = (prop) => {
       <td>{item.total}</td>
       <td>
         <div className="btn-group">
-          <a
+          <Link
             title="Editar"
-            href="#"
+            to={`/editar/${producto.codigo}`}
             className="btn btn-sm btn-outline-secondary"
-            onClick={() => acciones.seleccionar(item.codigo)}
           >
             <i className="bi bi-pencil-square"></i>
-          </a>
+          </Link>
           <a
             title="Eliminar"
             href="#"
@@ -40,17 +40,17 @@ const ProductsList = () => {
   const productos = useSelector((state) => state.productos);
   const dispatch = useDispatch();
 
-  const seleccionar = (codigo) => {
-    dispatch(productoSeleccionado(codigo));
-  };
+  useEffect(() => {
+    dispatch({type:"obtener-productos"})
+  },[]);
+
 
   const eliminar = (codigo) => {
     dispatch(productoEliminado(codigo));
   };
 
   const acciones = {
-    seleccionar,
-    eliminar,
+    eliminar
   };
 
   const cantidadTotal = sum(productos, (x) => x.cantidad);

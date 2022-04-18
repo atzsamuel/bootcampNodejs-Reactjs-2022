@@ -11,7 +11,10 @@ const ActionTypes = {
 export const reducer = (state, action) => {
   switch (action.type) {
     case ActionTypes.ProductoSeleccionado:
-      return productoSeleccionadoReducer(state, action);
+      return {
+        ...state,
+        producto: action.payload,
+      };
 
       case ActionTypes.AsignarProductos:
         return{
