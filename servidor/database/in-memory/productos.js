@@ -2,6 +2,7 @@ let lastId = 1;
 const productos = [
   {
     nombre: "producto a",
+    categoria:1,
     cantidad: 1,
     precio: 10,
     codigo: lastId,
@@ -25,6 +26,26 @@ const update = (codigo,producto) => {
     return Promise.reject({mensaje:"No existe ningun producto con codigo "+codigo});
   }
   const index = productos.indexOf(old);
-  const nuevoProducto = (productos[index] = {...producto,codigo});
+  const nuevoProducto = (productos[index] = {...producto,codigo,total:producto.cantidad*producto.precio});
   return Promise.resolve(nuevoProducto);
+}
+const remove = (codigo) => {
+  const producto = productos.find((p) => p.codigo == codigo);
+  if(!producto){
+    return Promise.reject({mensaje:"No existe ningun producto con codigo "+codigo});
+  }
+  const index = productos.indexOf(producto);
+  productos.splice(index,1);
+  return Promise.resolve(producto);
+}
+
+//all().then((productos) => console.log('p:->',productos));
+
+export default {
+  all,
+  filter,
+  add,
+  single,
+  update,
+  remove
 }

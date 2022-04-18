@@ -1,17 +1,9 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { productos }  from "./database/index.js";
+import { productos }  from "./database";
+//import {productos} from "./database"
 
-/*let lastId = 1;
-let productos = [
-  {
-    nombre: "Producto 1",
-    cantidad: 1,
-    precio: 10,
-    codigo: lastId,
-  },
-];*/
 //middleware para parsear json
 const app = express();
 
@@ -24,11 +16,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/productos", async (req, res) => {
-  console.log('dataaaa from mongodb',req);
   const filtro = req.query.filtro;
   let result;
   if (filtro) {
     result = await productos.filter(filtro)
+    console.log('data from get productos: ',result);
   } else {
     result = await productos.all();
   }
@@ -53,10 +45,10 @@ app.get("/productos/:codigo", async (req, res) => {
   }
 });
 
-app.put("/productos/:codigo", (req, res) => {
+app.put("/productos/:codigo", async (req, res) => {
   const codigo = req.params.codigo;
   try {
-   const newProducto =  productos.update(codigo, req.body);
+   const newProducto =  await productos.update(codigo, req.body);
    res.status(200);
    res.json(newProducto); 
   } catch (mensaje) {

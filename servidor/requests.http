@@ -1,5 +1,5 @@
 ### Home
-GET http://localhost:5001/
+GET http://localhost:3000/
 
 ### Obtener productos
 GET http://localhost:3000/productos
@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 
 ### Modificar Productos
-PUT  http://localhost:5001/productos/6
+PUT  http://localhost:3000/productos/2
 Content-Type: application/json
 
 {
