@@ -1,4 +1,5 @@
 import api from "./api";
+import { push } from "connected-react-router";
 
 const asignarProductos = (payload)=>{
   type:"asignar-productos",
@@ -16,16 +17,13 @@ const apiMiddleware = ({dispatch}) => (next) => async (action) => {
     }
     case "producto-agregado": {
       await api.add(action.payload);
-      const productos = await api.all();
-      dispatch(asignarProductos(productos));
+      dispatch(push("/"));
      // window.location.href = "/";
       break;
     }
     case "producto-modificado": {
       await api.update(action.payload);
-      const productos = await api.all();
-      dispatch(asignarProductos(productos));
-      //window.location.href = "/";
+      dispatch(push("/"));
       break;
     }
     case "producto-eliminado": {
