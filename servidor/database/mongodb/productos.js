@@ -26,13 +26,9 @@ const productosSchema = new mongoose.Schema({
 const Productos = mongoose.model("productos", productosSchema);
 
 const all = () => Productos.find({}).then(mapProductos);
-const filter = (filtro) =>
-  Productos.find({ nombre: { $regex: filtro, $options: "i" } }).then(mapProductos);
+const filter = (filtro) => Productos.find({ nombre: { $regex: filtro, $options: "i" } }).then(mapProductos);
 const add = (producto) => {
-  const nuevoProducto = new Productos({
-    ...producto,
-    total: producto.cantidad * producto.precio,
-  });
+  const nuevoProducto = new Productos({...producto, total: producto.cantidad * producto.precio});
   return nuevoProducto.save().then(mapProducto);
 };
 const single = (_id) => Productos.findOne({ _id }).then(mapProducto);

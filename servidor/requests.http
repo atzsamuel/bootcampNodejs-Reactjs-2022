@@ -2,11 +2,11 @@
 GET http://localhost:5001/
 
 ### Obtener productos
-GET http://localhost:5001/productos
+GET http://localhost:3000/productos
 Authorization: hola-mundo
 
 ### Crear Productos
-POST http://localhost:5001/productos
+POST http://localhost:3000/productos
 Content-Type: application/json
 
 {

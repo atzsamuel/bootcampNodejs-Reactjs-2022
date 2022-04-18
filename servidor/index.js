@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import { productos } from "./database";
+import { productos }  from "./database/index.js";
 
 /*let lastId = 1;
 let productos = [
@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/productos", async (req, res) => {
+  console.log('dataaaa from mongodb',req);
   const filtro = req.query.filtro;
   let result;
   if (filtro) {
@@ -76,8 +77,8 @@ app.delete("/productos/:codigo",async (req, res) => {
   }
 });
 
-app.listen(5001, () => {
-  console.log("Server is listening in port 5001");
+app.listen(3000, () => {
+  console.log("Server is listening in port 3000");
 });
 
 /*function isAuthenticated(req, res, next) {

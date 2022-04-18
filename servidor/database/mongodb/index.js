@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import productos from "./productos";
 
-mongoose.connect("mongodb+srv://mongouser:<code64>@cluster0.fmm23.mongodb.net/bootcampdb?retryWrites=true&w=majority", () => {
+//console.log(process.env);
+const mongodbUri = process.env.MONGODB_URI || "mongodb://localhost:27017/productos";
+mongoose.connect(mongodbUri, () => {
   console.log("Conectado a mongodb");
 });
 
